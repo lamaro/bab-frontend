@@ -44,7 +44,7 @@ export class CerveceriasService {
 
   getCerveceria(slug: string): Observable<any>{
       this.cerveceria = this.http.get(this.cerveceriasUrl + 'cerveceria/' + slug);
-       console.log(this.cerveceria);
+       //console.log(this.cerveceria);
        return this.cerveceria;
   }
 
