@@ -10,8 +10,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class CerveceriaComponent implements OnInit {
   cerveceria: any = {};
-  constructor(public _conectapiService:CerveceriasService,public router:ActivatedRoute) {
-  }
+  constructor(public _conectapiService:CerveceriasService,public router:ActivatedRoute) {}
   ngOnInit() {
     this.router.params.subscribe( params => {
       console.log(params['slug']);
