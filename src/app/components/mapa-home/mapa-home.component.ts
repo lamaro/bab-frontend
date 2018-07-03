@@ -18,7 +18,7 @@ export class MapaHomeComponent{
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
   }
-/*
+
   mapClicked($event: MouseEvent) {
     this.markers.push({
       lat: $event.coords.lat,
@@ -26,12 +26,13 @@ export class MapaHomeComponent{
       draggable: true
     });
   }
-*/
+
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
   }
 
   markers: marker[] = [
+    /*
 	  {
 		  lat: 51.673858,
 		  lng: 7.815982,
@@ -50,13 +51,15 @@ export class MapaHomeComponent{
 		  label: 'C',
 		  draggable: true
 	  }
+    */
   ]
   ngOnInit() {
     this._conectapiService.getCervecerias().subscribe(data => {
       console.log(data);
       //this.markers = data;
       //Agregar loop
-      this.markers.push({'lat':data[0].lat,'lng':data[0].lng})
+      this.markers.push({'lat':Number(data[0].lat),'lng':Number(data[0].lng)})
+      console.log(this.markers);
          });
     });
 }
