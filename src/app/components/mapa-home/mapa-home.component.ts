@@ -18,7 +18,7 @@ export class MapaHomeComponent{
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
   }
-
+/*
   mapClicked($event: MouseEvent) {
     this.markers.push({
       lat: $event.coords.lat,
@@ -26,7 +26,7 @@ export class MapaHomeComponent{
       draggable: true
     });
   }
-
+*/
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
   }
@@ -55,13 +55,12 @@ export class MapaHomeComponent{
   ]
   ngOnInit() {
     this._conectapiService.getCervecerias().subscribe(data => {
-      console.log(data);
-      //this.markers = data;
-      //Agregar loop
-      this.markers.push({'lat':Number(data[0].lat),'lng':Number(data[0].lng)})
+      data.forEach(item => {
+        this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng)});
+      });
       console.log(this.markers);
-         });
     });
+  });
 }
 
 // just an interface for type safety.
