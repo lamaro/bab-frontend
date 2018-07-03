@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+//Google Maps
+import { AgmCoreModule } from '@agm/core';
+
 //Rutas
 import { APP_ROUTING } from './app.routes';
 
@@ -35,6 +38,9 @@ import { NuevaCerveceriaComponent } from './components/nueva-cerveceria/nueva-ce
   imports: [
     BrowserModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCdZJ4FE_E5uVGEa_EmdOhOEbS5wNJUe-4'
+    }),
     APP_ROUTING
   ],
   providers: [
