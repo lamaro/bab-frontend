@@ -9,21 +9,32 @@ import { Router } from '@angular/router';
 })
 export class CerveceriasComponent implements OnInit {
 
-  posts:any[]=[];
+  cervecerias:any[]=[];
 
   constructor(public _conectapiService:CerveceriasService,private router:Router) { }
 
   ngOnInit() {
     this._conectapiService.getCervecerias().subscribe(data => {
       console.log(data);
-      this.posts = data;
+      this.cervecerias = data;
     });
 
   }
 
-  verCerveceria(idx:number){
-    this.router.navigate(['/cerveceria',idx])
-    //console.log(idx);
+  verCerveceria(slug:string){
+    this.router.navigate(['/cerveceria',slug])
+  }
+
+  addCerveceria(){
+    this.router.navigate(['/cervecerias','add'])
+  }
+
+  deleteCerveceria(id:string){
+    this.router.navigate(['/cervecerias','delete',id])
+  }
+
+  updateCerveceria(id:string){
+    this.router.navigate(['/cervecerias','update',id])
   }
 
 }

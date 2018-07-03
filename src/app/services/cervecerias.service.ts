@@ -30,23 +30,24 @@ export class CerveceriasService {
       return this.cervecerias;
     });
   }
-/*
-  getCerveceria(slug: string){
-   // return this.cervecerias[idx];
-   console.log(slug);
-   console.log(JSON.stringify(this.cerveceria));
-    this.cerveceria = this.http.get(this.cerveceriasUrl + 'cerveceria/' + slug);
-    console.log(this.cerveceria);
-    console.log(JSON.stringify(this.cerveceria));
-    return this.cerveceria;
-  }
-  */
 
   getCerveceria(slug: string): Observable<any>{
       this.cerveceria = this.http.get(this.cerveceriasUrl + 'cerveceria/' + slug);
        //console.log(this.cerveceria);
        return this.cerveceria;
   }
+
+  deleteCerveceria(id:string) {
+    return this.http.delete(this.cerveceriasUrl + 'cerveceria/' + id);
+  }
+
+  updateTvshow (cerveceria) {
+  console.log(cerveceria);
+    return this.http.put(this.cerveceriasUrl + 'cerveceria/' + cerveceria._id, cerveceria)
+    .map( (resp: any) => {
+      this.cerveceria = resp;
+      return this.cerveceria;
+    });
 
 
 
