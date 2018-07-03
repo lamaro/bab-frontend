@@ -54,6 +54,7 @@ export class MapaHomeComponent{
     */
   ]
   ngOnInit() {
+    //Agrego los marcadores
     this._conectapiService.getCervecerias().subscribe(data => {
       data.forEach(item => {
         this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng)});
@@ -67,6 +68,6 @@ export class MapaHomeComponent{
 interface marker {
 	lat: number;
 	lng: number;
-	label?: string;
-	draggable: boolean;
+	//label?: string;
+	//draggable: boolean;
 }

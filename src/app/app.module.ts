@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Google Maps
 import { AgmCoreModule } from '@agm/core';
@@ -22,6 +23,11 @@ import { CerveceriasComponent } from './components/cervecerias/cervecerias.compo
 import { DestacadasHomeComponent } from './components/destacadas-home/destacadas-home.component';
 import { NuevaCerveceriaComponent } from './components/nueva-cerveceria/nueva-cerveceria.component';
 
+//admin
+import { AddComponent } from './components/admin/add/add.component';
+import { DeleteComponent } from './components/admin/delete/delete.component';
+import { UpdateComponent } from './components/admin/update/update.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,11 +39,16 @@ import { NuevaCerveceriaComponent } from './components/nueva-cerveceria/nueva-ce
     CerveceriaComponent,
     CerveceriasComponent,
     DestacadasHomeComponent,
-    NuevaCerveceriaComponent
+    NuevaCerveceriaComponent,
+    AddComponent,
+    DeleteComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCdZJ4FE_E5uVGEa_EmdOhOEbS5wNJUe-4'
     }),
