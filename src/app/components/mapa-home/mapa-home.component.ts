@@ -60,7 +60,7 @@ export class MapaHomeComponent{
       });
       console.log(this.markers);
     });
-  });
+  }
 }
 
 // just an interface for type safety.
