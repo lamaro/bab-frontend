@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class AddComponent implements OnInit {
 
   cerveceria:Object ={}
+  coordenadas:Object ={}
 
   constructor(public _cerveceriasService:CerveceriasService,
               private router: Router ) { }
@@ -25,6 +26,11 @@ export class AddComponent implements OnInit {
 
   cancelar(){
     this.router.navigate(['/cervecerias'])
+  }
+
+  geocoderSer(){
+    this.coordenadas = this._cerveceriasService.geocoder('Bogotá+367,Ciudad+de+Buenos+Aires,+Argentina');
+    console.log(this.coordenadas);
   }
 
 }
