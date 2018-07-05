@@ -1,3 +1,47 @@
 <p>
-  update works!
+  Editar cerveceria
 </p>
+
+<form method="post" (ngSubmit)="modificar()" #formcerveceria="ngForm">
+  <div class="form-group">
+    <label for="title">Nombre</label>
+    <input type="text" class="form-control" id="title" placeholder="Enter cerveceria Title" name="nombreCer" [(ngModel)]="cerveceria.nombreCer" >
+  </div>
+  <div class="form-group">
+    <label for="title">Slug</label>
+    <input type="text" class="form-control" id="title" placeholder="Enter cerveceria Title" name="slug" [(ngModel)]="cerveceria.slug" >
+  </div>
+  <div class="form-group">
+    <label for="year">Dirección</label>
+    <input type="text" class="form-control" id="year" placeholder="Enter cerveceria Year" name="ubicacionCer" [(ngModel)]="cerveceria.ubicacionCer" >
+  </div>
+  <div class="form-group">
+    <label for="country">Imagen</label>
+    <input type="text" class="form-control" id="country" placeholder="Enter cerveceria Country" name="urlImagenCer" [(ngModel)]="cerveceria.urlImagenCer" >
+  </div>
+  <div class="form-group">
+    <label for="poster">Promedio Bebida</label>
+    <input type="text" class="form-control" id="poster" placeholder="Enter cerveceria Poster" name="promBebCer" [(ngModel)]="cerveceria.promBebCer" >
+  </div>
+  <div class="form-group">
+    <label for="country">Promedio Comida</label>
+    <input type="text" class="form-control" id="seasons" placeholder="Enter cerveceria Seasons" name="promComCer" [(ngModel)]="cerveceria.promComCer" >
+  </div>
+  <div class="form-group">
+    <label for="country">Latitud</label>
+    <input type="text" class="form-control" id="seasons" placeholder="Enter cerveceria Seasons" name="lat" [(ngModel)]="cerveceria.lat" >
+  </div>
+  <div class="form-group">
+    <label for="country">Longitud</label>
+    <input type="text" class="form-control" id="seasons" placeholder="Enter cerveceria Seasons" name="lng" [(ngModel)]="cerveceria.lng" >
+  </div>
+<input type="hidden" class="form-control" id="title" placeholder="1" name="id" [(ngModel)]="cerveceria.id" >
+  <div class="form-group row">
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <button type="button" (click)="cancelar()" class="btn btn-danger">Cancelar</button>
+    </div>
+  </div>
+</form>
+
+{{ cerveceria | json }}

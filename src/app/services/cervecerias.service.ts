@@ -37,18 +37,22 @@ export class CerveceriasService {
        return this.cerveceria;
   }
 
+  getCerveceriaById(id: string): Observable<any>{
+      this.cerveceria = this.http.get(this.cerveceriasUrl + 'cerveceria/id/' + id);
+       //console.log(this.cerveceria);
+       return this.cerveceria;
+  }
+
   deleteCerveceria(id:string) {
     return this.http.delete(this.cerveceriasUrl + 'cerveceria/' + id);
   }
 
-  updateTvshow (cerveceria) {
+  updateCerveceria (cerveceria) {
   console.log(cerveceria);
     return this.http.put(this.cerveceriasUrl + 'cerveceria/' + cerveceria._id, cerveceria)
     .map( (resp: any) => {
       this.cerveceria = resp;
       return this.cerveceria;
     });
-
-
-
+  }
 }
