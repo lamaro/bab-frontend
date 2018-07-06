@@ -25,6 +25,7 @@ import { NuevaCerveceriaComponent } from './components/nueva-cerveceria/nueva-ce
 
 //admin
 import { AddComponent } from './components/admin/add/add.component';
+import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
 import { DeleteComponent } from './components/admin/delete/delete.component';
 import { UpdateComponent } from './components/admin/update/update.component';
 
@@ -42,7 +43,8 @@ import { UpdateComponent } from './components/admin/update/update.component';
     NuevaCerveceriaComponent,
     AddComponent,
     DeleteComponent,
-    UpdateComponent
+    UpdateComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,

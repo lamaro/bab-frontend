@@ -39,7 +39,7 @@ export class UpdateComponent implements OnInit {
 
   modificar(){
     console.log(this.cerveceria);
-    this._cerveceriasService.updateCerveceria(this.cerveceria).subscribe(res => {console.log('subscribe'); this.router.navigate(['cervecerias']) });
+    this._cerveceriasService.updateCerveceria(this.cerveceria).subscribe(res => {console.log('Editado!'); this.router.navigate(['admin/']) });
   }
 
   cancelar(){

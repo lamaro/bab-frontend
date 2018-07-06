@@ -1,0 +1,28 @@
+<br><br>
+<h1>
+  Cervecerias
+</h1>
+<br><br>
+<button type="button" class="btn btn-primary" (click)="addCerveceria()">Nueva Cerveceria</button>
+<br><br>
+<br><br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Detalles</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Borrar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of cervecerias; let i=index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{post.nombreCer}}</td>
+      <td><button type="button" (click)="verCerveceria(post.slug)" class="btn btn-info">Detalles</button></td>
+      <td><button type="button" class="btn btn-warning" (click)="updateCerveceria(post._id)">Editar</button></td>
+      <td><button type="button" class="btn btn-danger" (click)="deleteCerveceria(post._id)">Borrar</button></td>
+    </tr>
+  </tbody>
+</table>

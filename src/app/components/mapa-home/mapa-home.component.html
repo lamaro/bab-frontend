@@ -16,9 +16,18 @@
       [markerDraggable]="m.draggable"
       (dragEnd)="markerDragEnd(m, $event)">
 
-    <agm-info-window>
-      <strong>InfoWindow content</strong>
-    </agm-info-window>
+      <agm-info-window
+      [latitude]="m.lat"
+      [longitude]="m.lng">
+      <h3>{{m.nombreCer}}</h3>
+      <p>{{m.ubicacionCer}}</p>
+      <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Apurate!</strong> Cierra en 20 minutos.
+      </div>
+      <button type="button" (click)="verCerveceria(m.slug)" class="btn btn-info">Más info</button>
+
+      </agm-info-window>
 
   </agm-marker>
 

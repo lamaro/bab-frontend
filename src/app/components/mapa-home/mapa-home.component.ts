@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MouseEvent } from '@agm/core';
 import { CerveceriasService } from '../../services/cervecerias.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mapa-home',
@@ -8,7 +9,7 @@ import { CerveceriasService } from '../../services/cervecerias.service';
   styleUrls: ['./mapa-home.component.css']
 })
 export class MapaHomeComponent{
-  constructor(public _conectapiService:CerveceriasService) { }
+  constructor(public _conectapiService:CerveceriasService;private router:Router) { }
   // google maps zoom level
   zoom: number = 15;
   // initial center position for the map
@@ -57,10 +58,14 @@ export class MapaHomeComponent{
     //Agrego los marcadores
     this._conectapiService.getCervecerias().subscribe(data => {
       data.forEach(item => {
-        this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng)});
+        this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug});
       });
       console.log(this.markers);
     });
+  }
+
+  verCerveceria(slug:string){
+    this.router.navigate(['/cerveceria',slug])
   }
 }
 

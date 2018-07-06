@@ -21,11 +21,11 @@ export class AddComponent implements OnInit {
 
   alta(){
     console.log(this.cerveceria);
-    this._cerveceriasService.addCerveceria(this.cerveceria).subscribe(res => {console.log('Agregado!'); this.router.navigate(['cervecerias']) });
+    this._cerveceriasService.addCerveceria(this.cerveceria).subscribe(res => {console.log('Agregado!'); this.router.navigate(['/admin']) });
   }
 
   cancelar(){
-    this.router.navigate(['/cervecerias'])
+    this.router.navigate(['/admin'])
   }
 
   geocoderSer(){

@@ -1,7 +1,8 @@
-<p>
+<br>
+<h1>
   Alta cerveceria
-</p>
-
+</h1>
+<br><br>
 <form method="post" (ngSubmit)="alta()" #formcerveceria="ngForm">
   <div class="form-group">
     <label for="title">Nombre</label>
@@ -14,6 +15,7 @@
   <div class="form-group">
     <label for="year">Dirección</label>
     <input type="text" class="form-control" id="year" placeholder="Enter cerveceria Year" name="ubicacionCer" [(ngModel)]="cerveceria.ubicacionCer" >
+    <button type="button" (click)="geocoderSer()" class="btn btn-danger">Geocoder</button>
   </div>
   <div class="form-group">
     <label for="country">Imagen</label>
@@ -40,7 +42,6 @@
     <div class="input-group col-md-8">
       <button type="submit" class="btn btn-primary">Guardar</button>
       <button type="button" (click)="cancelar()" class="btn btn-danger">Cancelar</button>
-      <button type="button" (click)="geocoderSer()" class="btn btn-danger">Geocoder</button>
     </div>
   </div>
 </form>

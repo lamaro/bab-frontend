@@ -18,7 +18,7 @@ export class DeleteComponent implements OnInit {
   ngOnInit() {
 
     this.activatedRoute.params.subscribe( params => {
-      this._cerveceriasService.deleteCerveceria(params['id']).subscribe();
+      this._cerveceriasService.deleteCerveceria(params['id']).subscribe(res => {console.log('Eliminado!'); this.router.navigate(['/admin']) });
     })
 
   }
