@@ -1,21 +1,16 @@
-<br><br>
-<h1>
-  Cervecerias
-</h1>
-<br><br>
+<br/><br/><br/>
+<h1>Cervecerias <small>de Buenos Aires</small></h1>
+<hr>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let post of cervecerias; let i=index">
-      <th scope="row">{{i+1}}</th>
-      <td>{{post.nombreCer}}</td>
-      <td><button type="button" (click)="verCerveceria(post.slug)" class="btn btn-info">Más info</button></td>
-    </tr>
-  </tbody>
-</table>
+
+<div class="card-columns">
+  <div class="card" *ngFor="let post of cervecerias; let i=index">
+    <img class="card-img-top" [src]="post.urlImagenCer" [alt]="post.nombreCer">
+    <div class="card-body">
+      <h5 class="card-title">{{post.nombreCer}}</h5>
+      <p class="card-text">{{post.nombreCer}}</p>
+      <p class="card-text"><small class="text-muted">{{post.nombreCer}}</small></p>
+      <button type="button" (click)="verCerveceria(post.slug)" class="btn btn-info">Más info</button>
+    </div>
+  </div>
+</div>

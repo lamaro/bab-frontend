@@ -31,10 +31,10 @@
 
   </agm-marker>
 
-  <agm-circle [latitude]="lat + 0.3" [longitude]="lng"
-      [radius]="5000"
+  <agm-circle [latitude]="latUserLoc" [longitude]="lngUserLoc"
+      [radius]="500"
       [fillColor]="'red'"
-      [circleDraggable]="true"
+      [circleDraggable]="false"
       [editable]="true">
   </agm-circle>
 

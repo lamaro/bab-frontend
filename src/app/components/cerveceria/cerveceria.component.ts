@@ -51,8 +51,8 @@ export class CerveceriaComponent implements OnInit {
       result => {
           this.cerveceria = result[0];
           this.markers.push({'lat':Number(result[0].lat),'lng':Number(result[0].lng),'nombreCer':result[0].nombreCer,'ubicacionCer':result[0].ubicacionCer});
-          this.lat: Number(result[0].lat);
-          this.lng: Number(result[0].lng);
+          this.lat = Number(result[0].lat);
+          this.lng = Number(result[0].lng);
       }, //result
       error => {console.log(<any>error);
       })
@@ -63,6 +63,8 @@ export class CerveceriaComponent implements OnInit {
 interface marker {
 	lat: number;
 	lng: number;
+  nombreCer: string;
+  ubicacionCer: string;
 	//label?: string;
 	//draggable: boolean;
 }
