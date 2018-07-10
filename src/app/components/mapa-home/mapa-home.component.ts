@@ -24,7 +24,7 @@ export class MapaHomeComponent{
   latUserLoc: number = -34.59433815911231;
   lngUserLoc: number = -58.4236350560447;
   centerUserLoc:any;
-  radioUserLoc:number = 5000;
+  radioUserLoc:number = 1000;
   filteredMarkers:any[];
 
   clickedMarker(label: string, index: number) {
