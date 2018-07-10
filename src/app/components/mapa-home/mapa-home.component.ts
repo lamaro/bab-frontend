@@ -24,7 +24,7 @@ export class MapaHomeComponent{
   latUserLoc: number = -34.59433815911231;
   lngUserLoc: number = -58.4236350560447;
   centerUserLoc:any;
-  radioUserLoc:number = 500;
+  radioUserLoc:number = 5000;
   filteredMarkers:any[];
 
   clickedMarker(label: string, index: number) {
@@ -286,6 +286,7 @@ export class MapaHomeComponent{
   ngOnInit() {
     this.mapsAPILoader.load().then(() => {
     //Coordenadas del navegador
+
     if(navigator.geolocation){
       console.log('ACEPTADO EL LOCATION!');
       navigator.geolocation.getCurrentPosition(position => {
@@ -305,7 +306,8 @@ export class MapaHomeComponent{
             //console.log(markerLoc.lat());
             const  distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(markerLoc, this.centerUserLoc) / 1000;
              console.log(distanceInKm);
-            if (distanceInKm > this.radioUserLoc) {
+             console.log('radio: '+ this.radioUserLoc / 1000);
+            if (distanceInKm < this.radioUserLoc / 1000) {
               this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug,'urlImagenCer':item.urlImagenCer});
             }
           });
