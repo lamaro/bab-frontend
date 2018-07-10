@@ -41,9 +41,13 @@ export class MapaHomeComponent{
     */
   }
 
+  verCerveceria(slug: string){
+    this.router.navigate(['/cerveceria',slug])
+  }
+
   cambiaRadio($event: MouseEvent){
     this.markers = [];
-    this.radioUserLoc = $event / 1000;
+    this.radioUserLoc = Number($event) / 1000;
     console.log(this.radioUserLoc);
     this._conectapiService.getCervecerias().subscribe(data => {
       data.forEach(item => {
@@ -298,7 +302,8 @@ export class MapaHomeComponent{
         this.lng = position.coords.longitude;
         this.centerUserLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         //Agrego los Circulo
-        this.circles.push({'lat':Number(this.lat),'lng':Number(this.lng),'radioUserLoc':this.radioUserLoc});
+        this.circles.push({'latUserLoc':Number(this.lat),'lngUserLoc':Number(this.lng),'radioUserLoc':this.radioUserLoc});
+        console.log(this.circles);
         //Agrego los marcadores
         this._conectapiService.getCervecerias().subscribe(data => {
           data.forEach(item => {
@@ -319,8 +324,8 @@ export class MapaHomeComponent{
      this._conectapiService.getCervecerias().subscribe(data => {
        data.forEach(item => {
          this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug,'urlImagenCer':item.urlImagenCer});
-       });
-     }
+       })
+     })
    }
 
  });
@@ -328,9 +333,8 @@ export class MapaHomeComponent{
 
 
 }
-verCerveceria(slug:string){
-  this.router.navigate(['/cerveceria',slug])
 }
+
 // just an interface for type safety.
 interface marker {
 	lat: number;

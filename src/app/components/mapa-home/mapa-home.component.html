@@ -35,7 +35,7 @@
 
   <agm-circle
     *ngFor="let c of circles; let i = index"
-    [latitude]="c.lat" [longitude]="c.lng"
+    [latitude]="c.latUserLoc" [longitude]="c.lngUserLoc"
       [radius]="c.radioUserLoc"
       [fillColor]="'red'"
       [circleDraggable]="false"
