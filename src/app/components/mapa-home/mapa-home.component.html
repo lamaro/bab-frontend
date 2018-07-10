@@ -5,11 +5,13 @@
   [zoom]="zoom"
   [disableDefaultUI]="false"
   [zoomControl]="false"
+  [scrollwheel]="false"
+  [styles]="styles"
   (mapClick)="mapClicked($event)">
 
   <agm-marker
       *ngFor="let m of markers; let i = index"
-      (markerClick)="clickedMarker(m.label, i)"
+      (markerClick)="clickedMarker(m.nombreCer, i)"
       [latitude]="m.lat"
       [longitude]="m.lng"
       [label]="m.label"
@@ -17,25 +19,29 @@
       (dragEnd)="markerDragEnd(m, $event)">
 
       <agm-info-window
-      [latitude]="m.lat"
-      [longitude]="m.lng">
-      <h3>{{m.nombreCer}}</h3>
-      <p>{{m.ubicacionCer}}</p>
-      <div class="alert alert-dismissible alert-success">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <strong>Apurate!</strong> Cierra en 20 minutos.
-      </div>
-      <button type="button" (click)="verCerveceria(m.slug)" class="btn btn-info">Más info</button>
-
+        [latitude]="m.lat"
+        [longitude]="m.lng">
+        <!--<img [src]="m.urlImagenCer" [alt]="m.nombreCer">-->
+        <h3>{{m.nombreCer}} </h3>
+        <p>{{m.ubicacionCer}}</p>
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Apurate!</strong> Cierra en 20 minutos.
+        </div>
+        <button type="button" (click)="verCerveceria(m.slug)" class="btn btn-info">Más info</button>
       </agm-info-window>
 
   </agm-marker>
 
-  <agm-circle [latitude]="latUserLoc" [longitude]="lngUserLoc"
-      [radius]="500"
+  <agm-circle
+    *ngFor="let c of circles; let i = index"
+    [latitude]="c.lat" [longitude]="c.lng"
+      [radius]="c.radioUserLoc"
       [fillColor]="'red'"
       [circleDraggable]="false"
-      [editable]="true">
+      [editable]="true"
+      (radiusChange)="cambiaRadio($event)"
+      >
   </agm-circle>
 
 </agm-map>

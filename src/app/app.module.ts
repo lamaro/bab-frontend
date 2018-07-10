@@ -52,7 +52,8 @@ import { UpdateComponent } from './components/admin/update/update.component';
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCdZJ4FE_E5uVGEa_EmdOhOEbS5wNJUe-4'
+      apiKey: 'AIzaSyCdZJ4FE_E5uVGEa_EmdOhOEbS5wNJUe-4',
+      libraries: ['geometry']
     }),
     APP_ROUTING
   ],
