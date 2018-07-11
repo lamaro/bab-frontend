@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CerveceriasService } from '../../../services/cervecerias.service';
+import { ImportCerveceriaService } from '../../../services/import-cerveceria.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,8 +11,9 @@ import { Router } from '@angular/router';
 export class AdminHomeComponent implements OnInit {
 
   cervecerias:any[]=[];
+  cerveceriasImport:any[]=[];
 
-  constructor(public _conectapiService:CerveceriasService,private router:Router) { }
+  constructor(public _conectapiService:CerveceriasService,public _importCervecerias:ImportCerveceriaService,private router:Router) { }
 
   ngOnInit() {
     this._conectapiService.getCervecerias().subscribe(data => {
@@ -35,6 +37,15 @@ export class AdminHomeComponent implements OnInit {
 
   updateCerveceria(id:string){
     this.router.navigate(['/cervecerias','update',id])
+  }
+
+  importCerveceria(){
+    this.cerveceriasImport = this._importCervecerias.importCervecerias();
+      console.log(this.cerveceriasImport);
+      this.cerveceriasImport.forEach(item => {
+        this._conectapiService.addCerveceria(item).subscribe(res => {console.log('Agregado: '+ item.nombreCer);});
+      })
+
   }
 
 }

@@ -291,7 +291,7 @@ export class MapaHomeComponent{
     this.mapsAPILoader.load().then(() => {
     //Coordenadas del navegador
 
-    if(navigator.geolocation){
+    if(navigator.geolocation){ //corregir este if no detecta desicion del usuario allow location
       console.log('ACEPTADO EL LOCATION!');
       navigator.geolocation.getCurrentPosition(position => {
         this.location = position.coords;

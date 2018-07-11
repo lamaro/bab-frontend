@@ -56,7 +56,7 @@ export class CerveceriasService {
     });
   }
 
-  geocoder(term){
+  geocoder(term){ //No funciona
     this.cerveceria = this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=Bogot%C3%A1+367,Ciudad+de+Buenos+Aires,+Argentina&key=YAIzaSyCdZJ4FE_E5uVGEa_EmdOhOEbS5wNJUe-4');
      //console.log(this.cerveceria);
      return this.cerveceria;
