@@ -38,9 +38,10 @@
     [latitude]="c.latUserLoc" [longitude]="c.lngUserLoc"
       [radius]="c.radioUserLoc"
       [fillColor]="'red'"
-      [circleDraggable]="false"
+      [circleDraggable]="true"
       [editable]="true"
       (radiusChange)="cambiaRadio($event)"
+      (centerChange)="cambiaCentro($event)"
       >
   </agm-circle>
 
