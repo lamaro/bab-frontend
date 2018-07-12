@@ -19,7 +19,7 @@ export class MapaHomeComponent{
   ){}
 
   // Parametros iniciales del mapa
-  zoom: number = 13;
+  zoom: number = 12;
   lat: number = -34.59433815911231;
   lng: number = -58.4236350560447;
   location: any = {};
@@ -27,7 +27,7 @@ export class MapaHomeComponent{
   lngUserLoc: number = -58.4236350560447;
   //Parametros del usuario
   centerUserLoc:any;
-  radioUserLoc:number = 1000;
+  radioUserLoc:number = 2500;
   //Marcadores y Circulos
   markers: marker[] = [];
   circles: circle[] = [];
@@ -77,11 +77,33 @@ export class MapaHomeComponent{
         //Agrego los marcadores
         this._conectapiService.getCervecerias().subscribe(data => {
           data.forEach(item => {
-            this.markersAll.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug,'urlImagenCer':item.urlImagenCer});
             const markerLoc = new google.maps.LatLng(item.lat, item.lng);
+            this.markersAll.push({
+              'lat':Number(item.lat),
+              'lng':Number(item.lng),
+              'nombreCer':item.nombreCer,
+              'ubicacionCer':item.ubicacionCer,
+              'slug':item.slug,
+              'urlImagenCer':item.urlImagenCer,
+              'promBebCer':item.promBebCer,
+              'promComCer':item.promComCer,
+              'markerLoc':markerLoc,
+              'distance':0
+            });
             const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(markerLoc, this.centerUserLoc) / 1000;
             if (distanceInKm < this.radioUserLoc / 1000) {
-              this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug,'urlImagenCer':item.urlImagenCer});
+              this.markers.push({
+                'lat':Number(item.lat),
+                'lng':Number(item.lng),
+                'nombreCer':item.nombreCer,
+                'ubicacionCer':item.ubicacionCer,
+                'slug':item.slug,
+                'urlImagenCer':item.urlImagenCer,
+                'promBebCer':item.promBebCer,
+                'promComCer':item.promComCer,
+                'markerLoc':markerLoc,
+                'distance':distanceInKm
+              });
             }
           }); //fin foreach
         }); //fin suscribe
@@ -99,22 +121,33 @@ export class MapaHomeComponent{
     this.radioUserLoc = Number($event) / 1000;
     //this._conectapiService.getCervecerias().subscribe(data => {
       this.markersAll.forEach(item => {
-        const markerLoc = new google.maps.LatLng(item.lat, item.lng);
-        const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(markerLoc, this.centerUserLoc) / 1000;
+        //const markerLoc = new google.maps.LatLng(item.lat, item.lng);
+        const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(item.markerLoc, this.centerUserLoc) / 1000;
         if (distanceInKm < this.radioUserLoc) {
-          this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug,'urlImagenCer':item.urlImagenCer});
+          this.markers.push({
+            'lat':Number(item.lat),
+            'lng':Number(item.lng),
+            'nombreCer':item.nombreCer,
+            'ubicacionCer':item.ubicacionCer,
+            'slug':item.slug,
+            'urlImagenCer':item.urlImagenCer,
+            'promBebCer':item.promBebCer,
+            'promComCer':item.promComCer,
+            'markerLoc':item.markerLoc,
+            'distance':distanceInKm
+          });
         }
       });
     //});
   }
 
-  markersConFiltro(lat:number,lng:number,kms:number){
+  markersConFiltro(lat:number,lng:number,kms:number){ //NO SE USA
     const markerLoc = new google.maps.LatLng(lat, lng);
     this._conectapiService.getCervecerias().subscribe(data => {
       this.markers.forEach(item => {
         const  distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(markerLoc, this.centerUserLoc) / 1000;
         if (distanceInKm < kms / 1000) {
-          this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug,'urlImagenCer':item.urlImagenCer});
+          this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug,'urlImagenCer':item.urlImagenCer,'promBebCer':item.promBebCer,'promComCer':item.promComCer,'markerLoc':item.markerLoc,'distance':item.distance});
         }
       })
     })
@@ -123,6 +156,8 @@ export class MapaHomeComponent{
  clickedMarker(label: string, index: number) {
    console.log(`clicked the marker: ${label || index}`)
  }
+
+ 
 
  mapClicked($event: MouseEvent) { //NO SE USA
  /*
@@ -151,6 +186,10 @@ interface marker {
   ubicacionCer: string;
   slug: string;
   urlImagenCer: string;
+  markerLoc: any;
+  distance:any;
+  promBebCer: string;
+  promComCer: string;
 }
 
 interface circle {
