@@ -63,7 +63,10 @@ export class MapaHomeComponent{
     });
   }
 
-  cambiaCentro($event: MouseEvent){
+  cambiaCentro($event: MouseEvent){ //To be continued...
+    //console.log($event);
+    //this.centerUserLoc = new google.maps.LatLng($event['lat'], $event['lng']);
+    //console.log(this.centerUserLoc);
     /*
     this.markers = [];
     console.log($event);
@@ -81,6 +84,18 @@ export class MapaHomeComponent{
       //console.log(this.markers);
     });
     */
+  }
+
+  markersConFiltro(lat:number,lng:number,kms:number){
+    const markerLoc = new google.maps.LatLng(lat, lng);
+    this._conectapiService.getCervecerias().subscribe(data => {
+      this.markers.forEach(item => {
+        const  distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(markerLoc, this.centerUserLoc) / 1000;
+        if (distanceInKm < kms / 1000) {
+          this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug,'urlImagenCer':item.urlImagenCer});
+        }
+      })
+    })
   }
 
 
@@ -315,7 +330,7 @@ export class MapaHomeComponent{
       console.log('ACEPTADO EL LOCATION!');
       navigator.geolocation.getCurrentPosition(position => {
         this.location = position.coords;
-        console.log(position.coords);
+        //console.log(position.coords);
         this.latUserLoc = position.coords.latitude;
         this.lngUserLoc = position.coords.longitude;
         this.lat = position.coords.latitude;
@@ -323,7 +338,7 @@ export class MapaHomeComponent{
         this.centerUserLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         //Agrego los Circulo
         this.circles.push({'latUserLoc':Number(this.lat),'lngUserLoc':Number(this.lng),'radioUserLoc':this.radioUserLoc});
-        console.log(this.circles);
+        //console.log(this.circles);
         //Agrego los marcadores
         this._conectapiService.getCervecerias().subscribe(data => {
           data.forEach(item => {
@@ -339,13 +354,6 @@ export class MapaHomeComponent{
           //console.log(this.markers);
         });
       });
-   }else{
-     console.log('BLOQUEADO EL LOCATION!');
-     this._conectapiService.getCervecerias().subscribe(data => {
-       data.forEach(item => {
-         this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug,'urlImagenCer':item.urlImagenCer});
-       })
-     })
    }
 
  });
