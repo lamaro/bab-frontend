@@ -15,7 +15,7 @@ export class CerveceriasComponent implements OnInit {
 
   ngOnInit() {
     this._conectapiService.getCervecerias().subscribe(data => {
-      console.log(data);
+      //console.log(data);
       this.cervecerias = data;
     });
 
