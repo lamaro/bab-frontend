@@ -97,15 +97,15 @@ export class MapaHomeComponent{
   cambiaRadio($event: MouseEvent){
     this.markers = [];
     this.radioUserLoc = Number($event) / 1000;
-    this._conectapiService.getCervecerias().subscribe(data => {
-      data.forEach(item => {
+    //this._conectapiService.getCervecerias().subscribe(data => {
+      this.markersAll.forEach(item => {
         const markerLoc = new google.maps.LatLng(item.lat, item.lng);
         const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(markerLoc, this.centerUserLoc) / 1000;
         if (distanceInKm < this.radioUserLoc) {
           this.markers.push({'lat':Number(item.lat),'lng':Number(item.lng),'nombreCer':item.nombreCer,'ubicacionCer':item.ubicacionCer,'slug':item.slug,'urlImagenCer':item.urlImagenCer});
         }
       });
-    });
+    //});
   }
 
   markersConFiltro(lat:number,lng:number,kms:number){
