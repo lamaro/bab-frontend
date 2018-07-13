@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
 
+
 @Component({
   selector: 'app-mapa-home',
   templateUrl: './mapa-home.component.html',
@@ -156,8 +157,6 @@ export class MapaHomeComponent{
  clickedMarker(label: string, index: number) {
    console.log(`clicked the marker: ${label || index}`)
  }
-
- 
 
  mapClicked($event: MouseEvent) { //NO SE USA
  /*
