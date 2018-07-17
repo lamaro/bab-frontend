@@ -1,3 +1,4 @@
+<div class="container main-container">
 <br/><br/><br/>
 <h1>Cervecerias <small>de Buenos Aires</small></h1>
 <hr>
@@ -9,8 +10,9 @@
     <div class="card-body">
       <h5 class="card-title">{{post.nombreCer}}</h5>
       <p class="card-text">{{post.ubicacionCer}}</p>
-      <p class="card-text"><small class="text-muted">Puntaje Comida: {{post.promBebCer}} - Puntaje Comida: {{post.promComCer}}</small></p>
+      <p class="card-text"><small class="text-muted">Puntaje Comida: {{post.promBebCer | number : '1.1-1'}} - Puntaje Comida: {{post.promComCer | number : '1.1-1'}}</small></p>
       <button type="button" (click)="verCerveceria(post.slug)" class="btn btn-info">Más info</button>
     </div>
   </div>
+</div>
 </div>
