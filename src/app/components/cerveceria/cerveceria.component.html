@@ -6,8 +6,8 @@
     <div class="col-sm">
      <h1>{{ cerveceria.nombreCer }} <small>{{ cerveceria.ubicacionCer }}</small></h1>
      <ul>
-       <li>Puntaje Bebida: {{ cerveceria.promBebCer | number : '1.1-1' }}</li>
-       <li>Puntaje Comida: {{ cerveceria.promComCer | number : '1.1-1' }}</li>
+       <li>Puntaje Bebida: {{ promBebCer | number : '1.1-1' }}</li>
+       <li>Puntaje Comida: {{ promComCer | number : '1.1-1' }}</li>
      </ul>
      <agm-map
        [latitude]="lat"
@@ -39,35 +39,57 @@
   <br/>
   <br/>
   <h2>Comentarios</h2>
-  <div id="form-comentario" *ngFor="let comentario of comentarios; let i=index">
-    <h4>{{comentario.nombreUsuario}}</h4>
-    <p>{{comentario.comentarioUsuario}}</p>
-    <p>{{comentario.puntajeBebidaUsuario}}</p>
-    <p>{{comentario.puntajeComidaUsuario}}</p>
-    <hr/>
+  <div *ngFor="let comentario of comentarios; let i=index">
+    <div class="comentario-item">
+      <h4>{{comentario.nombreUsuario}}</h4>
+      <p><strong>Comentario:</strong> {{comentario.comentarioUsuario}}</p>
+      <p>Votó bebida: {{comentario.puntajeBebidaUsuario}} - Votó comida: {{comentario.puntajeComidaUsuario}}</p>
+    </div>
   </div>
+  <br/>
   <div id="form-comentario">
     <h3>Dejá tu comentario</h3>
-    <form method="post" (ngSubmit)="altaComentario()" #formcerveceria="ngForm">
+    <p>La votación se habilita completando todos los campos</p>
+    <form method="post" (ngSubmit)="altaComentario();formcerveceria.reset()" #formcerveceria="ngForm">
       <div class="form-group">
         <label for="title">Nombre</label>
-        <input type="text" class="form-control" id="title" placeholder="Enter cerveceria Title" name="nombreUsuario" [(ngModel)]="cerveceria.nombreUsuario" >
+        <input type="text" class="form-control" required minlength="5" maxlength="30" id="title" placeholder="Tu nombre" name="nombreUsuario" [(ngModel)]="cerveceria.nombreUsuario" #nombreUsuario="ngModel" >
+        <div *ngIf="nombreUsuario.errors && (nombreUsuario.dirty || nombreUsuario.touched)" class="alert alert-danger">
+          <div [hidden]="!nombreUsuario.errors.required">
+          Tu nombre es requerido!
+        </div>
+      </div>
       </div>
       <div class="form-group">
         <label for="title">Comentario</label>
-        <input type="text" class="form-control" id="nombre" placeholder="Enter cerveceria Title" name="comentarioUsuario" [(ngModel)]="cerveceria.comentarioUsuario" >
+        <input type="text" class="form-control" required minlength="5" maxlength="90"  id="nombre" placeholder="Que te pareció la cervercería?" name="comentarioUsuario" [(ngModel)]="cerveceria.comentarioUsuario" #comentarioUsuario="ngModel" >
+        <div *ngIf="comentarioUsuario.errors && (comentarioUsuario.dirty || comentarioUsuario.touched)" class="alert alert-danger">
+          <div [hidden]="!comentarioUsuario.errors.required">
+            Tu comentario es requerido!
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="poster">Puntaje Bebida</label>
-        <input type="text" class="form-control" id="puntajeBebida" placeholder="Valores de 1 a 10" name="puntajeBebidaUsuario" [(ngModel)]="cerveceria.puntajeBebidaUsuario" >
+        <input type="text" class="form-control" required id="puntajeBebida" placeholder="Valores de 1 a 10" name="puntajeBebidaUsuario" [(ngModel)]="cerveceria.puntajeBebidaUsuario" #puntajeBebidaUsuario="ngModel" >
+        <div *ngIf="puntajeBebidaUsuario.errors && (puntajeBebidaUsuario.dirty || puntajeBebidaUsuario.touched)" class="alert alert-danger">
+          <div [hidden]="!puntajeBebidaUsuario.errors.required">
+            Tu puntaje de la bebida es requerido!
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="country">Puntaje Comida</label>
-        <input type="text" class="form-control" id="puntajeComida" placeholder="Valores de 1 a 10" name="puntajeComidaUsuario" [(ngModel)]="cerveceria.puntajeComidaUsuario" >
+        <input type="text" class="form-control" required id="puntajeComida" placeholder="Valores de 1 a 10" name="puntajeComidaUsuario" [(ngModel)]="cerveceria.puntajeComidaUsuario" #puntajeComidaUsuario="ngModel">
+        <div *ngIf="puntajeComidaUsuario.errors && (puntajeComidaUsuario.dirty || puntajeComidaUsuario.touched)" class="alert alert-danger">
+          <div [hidden]="!puntajeComidaUsuario.errors.required">
+            Tu puntaje de la Comida es requerido!
+          </div>
+        </div>
       </div>
       <div class="form-group row">
         <div class="input-group col-md-8">
-          <button type="submit" class="btn btn-primary">Votar</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!formcerveceria.form.valid">Votar</button>
         </div>
       </div>
     </form>
