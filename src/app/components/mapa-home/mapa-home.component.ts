@@ -28,7 +28,7 @@ export class MapaHomeComponent{
   lngUserLoc: number = -58.4236350560447;
   //Parametros del usuario
   centerUserLoc:any;
-  radioUserLoc:number = 2500;
+  radioUserLoc:number = 3000;
   //Marcadores y Circulos
   markers: marker[] = [];
   circles: circle[] = [];

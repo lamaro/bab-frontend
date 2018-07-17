@@ -8,8 +8,8 @@
     <img class="card-img-top" [src]="post.urlImagenCer" [alt]="post.nombreCer">
     <div class="card-body">
       <h5 class="card-title">{{post.nombreCer}}</h5>
-      <p class="card-text">{{post.nombreCer}}</p>
-      <p class="card-text"><small class="text-muted">{{post.nombreCer}}</small></p>
+      <p class="card-text">{{post.ubicacionCer}}</p>
+      <p class="card-text"><small class="text-muted">Puntaje Comida: {{post.promBebCer}} - Puntaje Comida: {{post.promComCer}}</small></p>
       <button type="button" (click)="verCerveceria(post.slug)" class="btn btn-info">Más info</button>
     </div>
   </div>
