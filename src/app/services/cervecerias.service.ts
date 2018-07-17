@@ -9,6 +9,7 @@ export class CerveceriasService {
 
   cervecerias: any[]=[];
   cerveceria:any = {};
+  comentarios: any;
 
   cerveceriasUrl: string = 'http://localhost:3000/';
 
@@ -61,5 +62,21 @@ export class CerveceriasService {
      //console.log(this.cerveceria);
      return this.cerveceria;
 
+  }
+
+  getComentarios(cerveceria){
+    console.log(cerveceria);
+      this.comentarios = this.http.get(this.cerveceriasUrl + 'cerveceria/comentarios/' + cerveceria._id);
+       console.log(this.comentarios);
+       return this.comentarios;
+  }
+
+  updateComentarios (cerveceria) {
+  console.log(cerveceria);
+    return this.http.put(this.cerveceriasUrl + 'cerveceria/comentario/add/' + cerveceria._id, cerveceria)
+    .map( (resp: any) => {
+      this.cerveceria = resp;
+      return this.cerveceria;
+    });
   }
 }
