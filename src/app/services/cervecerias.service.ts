@@ -11,8 +11,8 @@ export class CerveceriasService {
   cerveceria:any = {};
   comentarios: any;
 
-  //cerveceriasUrl: string = 'http://localhost:3000/';
-  cerveceriasUrl: string = 'https://buenosairesbeer-api-rest.herokuapp.com/';
+  //cerveceriasUrl: string = 'http://localhost:3000/'; //Api rest en localhost
+  cerveceriasUrl: string = 'https://buenosairesbeer-api-rest.herokuapp.com/'; Api rest en Heroku
 
   constructor(public http: HttpClient) { }
 
